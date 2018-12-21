@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+
+  <title>_JS_Clock_</title>
+
+</head>
+
+<body>
+
+<button onclick="newGame()">New Game </button>
+<p id="demo"></p>
+
+
+<script>
+
+const numberOfGuesses = 8;
+const min=1;
+const max=50;
+
+function newGame() {
+
+var guessesLeft = numberOfGuesses;
+var gameNumber = Math.floor(Math.random() * 50);
+console.log("Number to guess: "+gameNumber)
+
+
+
+while (guessesLeft > 0) {
+
+var number = parseInt(prompt("Please give me number between 1 and 50", "1"));
+
+if (number != null) {
+  guessesLeft -= 1;
+  document.getElementById("demo").innerHTML +=  "You are guessing that " + number + " is my number.<br>" + "You still have " + guessesLeft + " guesses <br>"
+
+if (number>gameNumber) {
+document.getElementById("demo").innerHTML += "You said too much! <br>"
+}
+
+if (number<gameNumber) {
+document.getElementById("demo").innerHTML += "You said too less!<br>"
+}
+
+  else  {
+    document.getElementById("demo").innerHTML += "You guessed! Yeeeey you`re a winner!"
+    break;
+  }
+
+
+}
+  }
+}
+
+
+</script>
+
+
+</body>
+</html>
