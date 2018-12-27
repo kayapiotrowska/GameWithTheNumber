@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+
+  <title>Guess the number!</title>
+
+</head>
+
+<body>
+
+<button onclick="newGame()">New Game </button>
+<p id="demo"></p>
+<img id="imageWinner" style="width:50px; height:100px">
+<audio id="background_music" autoplay></audio>
+
+<script>
+
+const numberOfGuesses = 8;
+const min=1;
+const max=50;
+
+function newGame() {
+
+var guessesLeft = numberOfGuesses;
+var gameNumber = Math.floor(Math.random() * 50);
+
+console.log("Number to guess: "+gameNumber)
+
+  document.getElementById("demo").innerHTML = ""
+  document.getElementById("imageWinner").src=""
+
+while (guessesLeft > 0) {
+
+var number = parseInt(prompt("Please give me number between 1 and 50", "1"));
+
+
+
+/*if (number != null) {   && isNaN(number) */
+
+if ( number !=null && Number.isInteger(number) && number>0 &&number<51 ) {
+
+  guessesLeft -= 1;
+  document.getElementById("demo").innerHTML +=  "You are guessing that " + number + " is my number.<br>"
+
+if (number>gameNumber) {
+document.getElementById("demo").innerHTML += "You said too much! <br>"
+}
+
+else if (number<gameNumber) {
+document.getElementById("demo").innerHTML += "You said too less!<br>"
+}
+
+  else  {
+    document.getElementById("demo").innerHTML += "You guessed! Yeeeey you`re a winner!"
+
+    document.getElementById("imageWinner").src="img/girl.jpg"
+
+    document.getElementById("background_music").src += "music/winner.mp3"
+
+
+    break;
+  }
+
+document.getElementById("demo").innerHTML +=  "You still have " + guessesLeft + " guesses <br>"
+
+}
+
+else {
+document.getElementById("demo").innerHTML += "Give a proper number between 1 and 50!You lost a turn!<br>"
+}
+
+  }
+}
+
+
+</script>
+
+
+</body>
+</html>
